@@ -6,12 +6,12 @@ class MainContainer extends Component{
 
 
     render() {
-        const {wizards} = this.props
+        const {chosenWizards} = this.props;
 
         return (
             <div>
                 {
-                    wizards.map(wizard=>{
+                    chosenWizards.map((wizard) => {
                         return(
                             <WizardCard
                                 imageLink = {wizard.image}

@@ -9,65 +9,104 @@ class App extends Component{
 
     state = {
         wizards: [],
-        filteredGryffindor: [],
-        filteredSlytherin: [],
-        filteredHufflepuff: [],
-        filteredRavenclaw: []
+        chosenWizards: []
     }
 
     componentDidMount() {
+
         fetch("http://hp-api.herokuapp.com/api/characters/students")
             .then((response) => response.json())
             .then((response) => this.setState({ wizards: response }))
+            .then((response)=>{
+                    const {wizards} = this.state
+                    this.setState({
+                        chosenWizards: this.choiceWizards(wizards)
+                    }
+                )})
     }
 
-    wizardsGryffindor = () =>{
-        const {wizards, filteredGryffindor} = this.state;
+    wizardsGryffindor = (wizards) =>{
 
-        this.setState({
-            filteredGryffindor: wizards.filter(wizard => wizard.house === "Gryffindor")
-        })
-        console.log(filteredGryffindor);
+      return wizards.filter(wizard => wizard.house === "Gryffindor")
+
     }
 
-    wizardsSlytherin = () =>{
-        const {wizards, filteredSlytherin} = this.state;
+    wizardsSlytherin = (wizards) =>{
 
-        this.setState({
-            filteredSlytherin: wizards.filter(wizard => wizard.house === "Slytherin")
-        })
-        console.log(filteredSlytherin);
+        return wizards.filter(wizard => wizard.house === "Slytherin")
+
     }
 
-    wizardsHufflepuff = () =>{
-        const {wizards, filteredHufflepuff} = this.state;
+    wizardsHufflepuff = (wizards) =>{
 
-        this.setState({
-            filteredHufflepuff: wizards.filter(wizard => wizard.house === "Hufflepuff")
-        })
-        console.log(filteredHufflepuff);
+        return wizards.filter(wizard => wizard.house === "Hufflepuff")
+
     }
 
-    wizardsRavenclaw= () =>{
-        const {wizards, filteredRavenclaw} = this.state;
+    wizardsRavenclaw = (wizards) =>{
 
-        this.setState({
-            filteredRavenclaw: wizards.filter(wizard => wizard.house === "Ravenclaw")
-        })
-        console.log(filteredRavenclaw);
+        return wizards.filter(wizard => wizard.house === "Ravenclaw")
+
     }
 
+    createArrayWithHouses = (wizards) => {
+       let houseGryffindor =this.wizardsGryffindor(wizards);
+       let houseSlytherin = this.wizardsSlytherin(wizards);
+       let houseHufflepuff = this.wizardsHufflepuff(wizards);
+       let houseRavenclaw = this.wizardsRavenclaw(wizards);
 
+       return [houseGryffindor, houseSlytherin, houseHufflepuff, houseRavenclaw]
+    }
+
+    choiceThreeHouses = (wizards) =>{
+        let houses = this.createArrayWithHouses(wizards);
+
+        let first= Math.floor(Math.random() * 4);
+        let second= Math.floor(Math.random() * 4);
+        let third = Math.floor(Math.random() * 4);
+
+        while(second === first){
+            second= Math.floor(Math.random() * 4);
+        }
+
+        while(third === first || third === second){
+            third = Math.floor(Math.random() * 4);
+        }
+
+        return [houses[first], houses[second], houses[third]]
+    }
+
+    choiceWizards = (wizards) => {
+       let chosenHouses = this.choiceThreeHouses(wizards);
+       let chosenWizard  = [];
+       chosenHouses.forEach(house =>{
+           let max = house.length;
+           let randomPosition = Math.floor(Math.random() * (max));
+           chosenWizard.push(house[randomPosition])
+       })
+       // let maxFirstHouse =  chosenHouses[0].length;
+       // let maxSecondHouse =  chosenHouses[1].length;
+       // let maxThirdHouse =  chosenHouses[2].length;
+       //
+       // let randomFirst = Math.floor(Math.random() * (maxFirstHouse));
+       // let randomSecond = Math.floor(Math.random() * (maxSecondHouse));
+       // let randomThird = Math.floor(Math.random() * (maxThirdHouse));
+       //
+       // let firstWizard =  chosenHouses[0][randomFirst];
+       // let secondWizard =  chosenHouses[1][randomSecond];
+       // let thirdWizard =  chosenHouses[2][randomThird];
+
+       // return [firstWizard, secondWizard, thirdWizard];
+       return chosenWizard;
+    }
 
     render() {
-        const {wizards} = this.state
-        console.log(wizards);
+        const {chosenWizards} = this.state;
 
         return (
 
         <div className="App">
-          <MainContainer wizards={wizards}/>
-            <button onClick={this.wizardsRavenclaw}>Click me</button>
+          <MainContainer chosenWizards={chosenWizards}/>
         </div>
     );
   }
