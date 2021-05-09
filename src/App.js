@@ -11,7 +11,8 @@ class App extends Component{
         wizards: [],
         filteredGryffindor: [],
         filteredSlytherin: [],
-        filteredHufflepuff: []
+        filteredHufflepuff: [],
+        filteredRavenclaw: []
     }
 
     componentDidMount() {
@@ -19,6 +20,43 @@ class App extends Component{
             .then((response) => response.json())
             .then((response) => this.setState({ wizards: response }))
     }
+
+    wizardsGryffindor = () =>{
+        const {wizards, filteredGryffindor} = this.state;
+
+        this.setState({
+            filteredGryffindor: wizards.filter(wizard => wizard.house === "Gryffindor")
+        })
+        console.log(filteredGryffindor);
+    }
+
+    wizardsSlytherin = () =>{
+        const {wizards, filteredSlytherin} = this.state;
+
+        this.setState({
+            filteredSlytherin: wizards.filter(wizard => wizard.house === "Slytherin")
+        })
+        console.log(filteredSlytherin);
+    }
+
+    wizardsHufflepuff = () =>{
+        const {wizards, filteredHufflepuff} = this.state;
+
+        this.setState({
+            filteredHufflepuff: wizards.filter(wizard => wizard.house === "Hufflepuff")
+        })
+        console.log(filteredHufflepuff);
+    }
+
+    wizardsRavenclaw= () =>{
+        const {wizards, filteredRavenclaw} = this.state;
+
+        this.setState({
+            filteredRavenclaw: wizards.filter(wizard => wizard.house === "Ravenclaw")
+        })
+        console.log(filteredRavenclaw);
+    }
+
 
 
     render() {
@@ -29,7 +67,7 @@ class App extends Component{
 
         <div className="App">
           <MainContainer wizards={wizards}/>
-            <button onClick={this.wizardsHufflepuff }>Click me</button>
+            <button onClick={this.wizardsRavenclaw}>Click me</button>
         </div>
     );
   }
