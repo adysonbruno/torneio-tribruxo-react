@@ -84,19 +84,7 @@ class App extends Component{
            let randomPosition = Math.floor(Math.random() * (max));
            chosenWizard.push(house[randomPosition])
        })
-       // let maxFirstHouse =  chosenHouses[0].length;
-       // let maxSecondHouse =  chosenHouses[1].length;
-       // let maxThirdHouse =  chosenHouses[2].length;
-       //
-       // let randomFirst = Math.floor(Math.random() * (maxFirstHouse));
-       // let randomSecond = Math.floor(Math.random() * (maxSecondHouse));
-       // let randomThird = Math.floor(Math.random() * (maxThirdHouse));
-       //
-       // let firstWizard =  chosenHouses[0][randomFirst];
-       // let secondWizard =  chosenHouses[1][randomSecond];
-       // let thirdWizard =  chosenHouses[2][randomThird];
 
-       // return [firstWizard, secondWizard, thirdWizard];
        return chosenWizard;
     }
 
