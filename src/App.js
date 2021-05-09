@@ -1,25 +1,38 @@
-import logo from './logo.svg';
+import {Component} from "react";
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import MainContainer from "./Components/MainContainer";
+
+
+
+class App extends Component{
+
+    state = {
+        wizards: [],
+        filteredGryffindor: [],
+        filteredSlytherin: [],
+        filteredHufflepuff: []
+    }
+
+    componentDidMount() {
+        fetch("http://hp-api.herokuapp.com/api/characters/students")
+            .then((response) => response.json())
+            .then((response) => this.setState({ wizards: response }))
+    }
+
+
+    render() {
+        const {wizards} = this.state
+        console.log(wizards);
+
+        return (
+
+        <div className="App">
+          <MainContainer wizards={wizards}/>
+            <button onClick={this.wizardsHufflepuff }>Click me</button>
+        </div>
+    );
+  }
 }
 
 export default App;
