@@ -3,8 +3,6 @@ import './App.css';
 
 import MainContainer from "./Components/MainContainer";
 
-
-
 class App extends Component{
 
     state = {

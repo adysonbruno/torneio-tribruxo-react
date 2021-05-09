@@ -1,0 +1,19 @@
+.main-container{
+    display: flex;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 311px;
+    height: 600px;
+    margin:10px;
+
+}
+
+.house-gryffindor img {
+    box-sizing: border-box;
+    border: 5px solid #A40201;
+    border-radius: 15px;
+}
