@@ -1,0 +1,16 @@
+.tournament-name{
+    font-size: 70px;
+    font-weight: 600;
+    line-height: 95px;
+    color: #F5F5F5;
+    margin: 0 0 19px;
+}
+
+h3{
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 55px;
+    color: #F5F5F5;
+    width: 450px;
+    margin: 0 auto;
+}

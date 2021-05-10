@@ -2,12 +2,14 @@ import {Component} from "react";
 import './App.css';
 
 import MainContainer from "./Components/MainContainer";
+import Home from "./Components/Home"
 
 class App extends Component{
 
     state = {
         wizards: [],
-        chosenWizards: []
+        chosenWizards: [],
+        showHome: true
     }
 
     componentDidMount() {
@@ -93,14 +95,36 @@ class App extends Component{
         })
     }
 
+
+    handleShowHome = () => {
+        const {showHome} = this.state
+
+        if (showHome === true) {
+            this.setState({showHome: false});
+        } else {
+            this.setState({showHome: true});
+        }
+    }
+
     render() {
-        const {chosenWizards} = this.state;
+        const {chosenWizards, showHome} = this.state;
 
         return (
 
         <div className="App">
-            <MainContainer chosenWizards={chosenWizards}/>
-            <button onClick={this.changeWizards} >Tentar Novamente</button>
+
+            {
+                (showHome === true) ?
+                    <Home
+                        handleShowHome = {this.handleShowHome}
+                    /> :
+                    (
+                        <div>
+                        <MainContainer chosenWizards={chosenWizards}/>
+                        <button className={"try-again"} onClick={this.changeWizards} >Tentar Novamente</button>
+                        </div>
+                    )
+            }
         </div>
     );
   }
