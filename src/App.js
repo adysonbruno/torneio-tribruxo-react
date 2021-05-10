@@ -117,11 +117,15 @@ class App extends Component{
                 (showHome === true) ?
                     <Home
                         handleShowHome = {this.handleShowHome}
+                        changeWizards = {this.changeWizards}
                     /> :
                     (
                         <div>
                         <MainContainer chosenWizards={chosenWizards}/>
-                        <button className={"try-again"} onClick={this.changeWizards} >Tentar Novamente</button>
+                            <div className={"buttons"}>
+                                <button className={"try-again"} onClick={this.changeWizards} >Tentar Novamente</button>
+                                <button className={"try-again"} onClick={this.handleShowHome} >Voltar</button>
+                            </div>
                         </div>
                     )
             }
