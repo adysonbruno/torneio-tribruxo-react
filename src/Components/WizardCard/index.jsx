@@ -10,9 +10,9 @@ class WizardCard extends Component{
                     <img src={imageLink} alt={name}/>
                 </figure>
                 <h2>{name}</h2>
-                <h3 className={"house"}>{house }</h3>
+                <h3 className = {"house"}>{house }</h3>
                 <h3>{gender[0].toUpperCase() + gender.slice(1)}</h3>
-                <h3>{(alive) ? "Alive": "Not Alive"}</h3>
+                <h3>{(alive) ? "Alive" : "Not Alive"}</h3>
             </div>
         );
     }

@@ -5,7 +5,6 @@ import "./style.css"
 
 class MainContainer extends Component{
 
-
     render() {
         const {chosenWizards} = this.props;
 

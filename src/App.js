@@ -12,7 +12,7 @@ class App extends Component{
 
     componentDidMount() {
 
-        fetch("http://hp-api.herokuapp.com/api/characters/students")
+        fetch("https://hp-api.herokuapp.com/api/characters/students")
             .then((response) => response.json())
             .then((response) => this.setState({ wizards: response }))
             .then(()=>{
