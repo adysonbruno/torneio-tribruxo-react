@@ -15,12 +15,12 @@ class App extends Component{
         fetch("http://hp-api.herokuapp.com/api/characters/students")
             .then((response) => response.json())
             .then((response) => this.setState({ wizards: response }))
-            .then((response)=>{
+            .then(()=>{
                     const {wizards} = this.state
                     this.setState({
                         chosenWizards: this.choiceWizards(wizards)
-                    }
-                )})
+                    })
+            })
     }
 
     wizardsGryffindor = (wizards) =>{
@@ -86,13 +86,21 @@ class App extends Component{
        return chosenWizard;
     }
 
+    changeWizards = () =>{
+        const {wizards} = this.state
+        this.setState({
+            chosenWizards: this.choiceWizards(wizards)
+        })
+    }
+
     render() {
         const {chosenWizards} = this.state;
 
         return (
 
         <div className="App">
-          <MainContainer chosenWizards={chosenWizards}/>
+            <MainContainer chosenWizards={chosenWizards}/>
+            <button onClick={this.changeWizards} >Tentar Novamente</button>
         </div>
     );
   }
